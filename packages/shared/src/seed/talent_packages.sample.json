@@ -1,0 +1,31 @@
+{
+  "rulesetVersion": "2026.02-beta",
+  "packages": [
+    {
+      "archetypeCode": "LIFEGAIN_ENGINE",
+      "levelMin": 1,
+      "levelMax": 1,
+      "bracketMin": 1,
+      "bracketMax": 1,
+      "name": "Sanguine Initiate",
+      "rulesText": "Whenever you gain life for the first time each turn, create a 1/1 white and black Vampire creature token.",
+      "keywords": [],
+      "manaValueDelta": 0,
+      "statsDelta": { "power": 0, "toughness": 0 },
+      "weight": 6
+    },
+    {
+      "archetypeCode": "LIFEGAIN_ENGINE",
+      "levelMin": 1,
+      "levelMax": 1,
+      "bracketMin": 1,
+      "bracketMax": 1,
+      "name": "Oath of Restraint",
+      "rulesText": "At the beginning of your end step, if you gained 3 or more life this turn, scry 1.",
+      "keywords": [],
+      "manaValueDelta": 0,
+      "statsDelta": {},
+      "weight": 8
+    }
+  ]
+}

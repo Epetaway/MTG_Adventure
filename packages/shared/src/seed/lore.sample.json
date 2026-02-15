@@ -1,0 +1,68 @@
+{
+  "planes": [
+    {
+      "code": "INN",
+      "name": "Innistrad",
+      "eraTags": ["gothic-horror"],
+      "isActive": true
+    },
+    {
+      "code": "RAV",
+      "name": "Ravnica",
+      "eraTags": ["guilds"],
+      "isActive": true
+    }
+  ],
+  "factions": [
+    {
+      "planeCode": "INN",
+      "code": "BLOODLINES",
+      "name": "Vampire Bloodlines",
+      "colorIdentity": "WB",
+      "allowedKinships": ["Vampire", "Human"],
+      "isActive": true
+    },
+    {
+      "planeCode": "RAV",
+      "code": "ORZHOV",
+      "name": "Orzhov Syndicate",
+      "colorIdentity": "WB",
+      "allowedKinships": ["Vampire", "Spirit", "Human"],
+      "isActive": true
+    }
+  ],
+  "kinships": [
+    {
+      "creatureType": "Vampire",
+      "planeCodes": ["INN", "RAV"],
+      "isActive": true
+    },
+    {
+      "creatureType": "Spirit",
+      "planeCodes": ["RAV"],
+      "isActive": true
+    }
+  ],
+  "classes": [
+    {
+      "code": "SANCTIFIER",
+      "name": "Sanctifier",
+      "description": "A faith-driven protector aligned with oaths and lifegain.",
+      "allowedArchetypeCodes": ["LIFEGAIN_ENGINE"],
+      "isActive": true
+    }
+  ],
+  "archetypes": [
+    {
+      "code": "LIFEGAIN_ENGINE",
+      "name": "Lifegain Engine",
+      "description": "Build around consistent lifegain triggers and payoffs.",
+      "requiredTags": [
+        { "tag": "lifegain_sources_min", "value": 12 },
+        { "tag": "payoffs_min", "value": 6 }
+      ],
+      "bannedTags": [{ "tag": "infinite_combo", "value": true }],
+      "isActive": true
+    }
+  ]
+}

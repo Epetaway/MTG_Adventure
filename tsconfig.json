@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "./apps/api" },
+    { "path": "./packages/shared" },
+    { "path": "./packages/rules-engine" }
+  ]
+}

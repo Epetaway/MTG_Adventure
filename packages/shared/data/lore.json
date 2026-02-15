@@ -1,0 +1,57 @@
+{
+  "planes": [
+    { "code": "RAVNICA", "name": "Ravnica", "eraTags": ["guilds"] },
+    { "code": "INNISTRAD", "name": "Innistrad", "eraTags": ["gothic"] }
+  ],
+  "factions": [
+    {
+      "planeCode": "RAVNICA",
+      "code": "AZORIUS",
+      "name": "Azorius Senate",
+      "colorIdentity": ["W", "U"],
+      "allowedKinships": ["Human", "Vedalken", "Spirit"]
+    },
+    {
+      "planeCode": "INNISTRAD",
+      "code": "ORZHOV",
+      "name": "Church of Dusk",
+      "colorIdentity": ["W", "B"],
+      "allowedKinships": ["Human", "Vampire", "Spirit"]
+    }
+  ],
+  "kinships": [
+    { "creatureType": "Human", "planeCodes": ["RAVNICA", "INNISTRAD"] },
+    { "creatureType": "Vampire", "planeCodes": ["INNISTRAD"] },
+    { "creatureType": "Vedalken", "planeCodes": ["RAVNICA"] }
+  ],
+  "classes": [
+    {
+      "code": "WAR_MAGE",
+      "name": "War-Mage",
+      "description": "Tactical mage trained in guild warfare.",
+      "allowedArchetypes": ["SPELLSLINGER", "ARTIFACTS_VALUE"]
+    },
+    {
+      "code": "SANCTIFIER",
+      "name": "Sanctifier",
+      "description": "Clerical guardian of wards and blessings.",
+      "allowedArchetypes": ["LIFEGAIN_ENGINE", "TOKENS"]
+    }
+  ],
+  "archetypes": [
+    {
+      "code": "LIFEGAIN_ENGINE",
+      "name": "Lifegain Engine",
+      "description": "Build around repeated life gain triggers.",
+      "requiredTags": ["lifegain"],
+      "bannedTags": ["extra_turns"]
+    },
+    {
+      "code": "SPELLSLINGER",
+      "name": "Spellslinger",
+      "description": "Lean on instants and sorceries.",
+      "requiredTags": ["instant", "sorcery"],
+      "bannedTags": ["tutor_loop"]
+    }
+  ]
+}

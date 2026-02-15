@@ -1,0 +1,31 @@
+{
+  "rulesetVersion": "2026.02",
+  "packages": [
+    {
+      "archetypeCode": "LIFEGAIN_ENGINE",
+      "name": "Radiant Ward",
+      "levelMin": 1,
+      "levelMax": 2,
+      "bracketMin": 1,
+      "bracketMax": 1,
+      "rulesText": "Whenever you gain life for the first time each turn, put a +1/+1 counter on up to one target creature you control.",
+      "keywords": [],
+      "manaValueDelta": 0,
+      "statsDelta": { "power": 0, "toughness": 0 },
+      "weight": 8
+    },
+    {
+      "archetypeCode": "SPELLSLINGER",
+      "name": "Glyph of Focus",
+      "levelMin": 1,
+      "levelMax": 2,
+      "bracketMin": 1,
+      "bracketMax": 1,
+      "rulesText": "Once each turn, when you cast an instant or sorcery spell, scry 1.",
+      "keywords": [],
+      "manaValueDelta": 0,
+      "statsDelta": { "power": 0, "toughness": 0 },
+      "weight": 8
+    }
+  ]
+}

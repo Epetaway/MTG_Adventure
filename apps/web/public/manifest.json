@@ -1,0 +1,8 @@
+{
+  "name": "Character Commander",
+  "short_name": "Commander",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f1ea",
+  "theme_color": "#b04a1a"
+}
