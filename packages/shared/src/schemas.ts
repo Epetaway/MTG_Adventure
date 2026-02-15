@@ -179,32 +179,6 @@ export const ValidationResultSchema = z.object({
     })
   )
 });
-/** View model: Character with nested unlocks, XP events, and gating info */
-export const CharacterSheetSchema = z.object({
-  id: z.string().uuid(),
-  userId: z.string().uuid(),
-  name: z.string().min(2),
-  planeId: z.string().uuid(),
-  factionId: z.string().uuid(),
-  kinshipId: z.string().uuid(),
-  classId: z.string().uuid(),
-  archetypeId: z.string().uuid(),
-  colorIdentity: ColorIdentitySchema,
-  level: z.number().int().min(1),
-  xpTotal: z.number().int().min(0),
-  bracketCap: BracketSchema,
-  portraitUrl: z.string().url().nullable(),
-  cardVersion: z.number().int().min(1),
-  unlocks: z.array(CharacterUnlockSchema).default([]),
-  recentXpEvents: z.array(XpEventSchema).default([]),
-  nextLevelAt: z.number().int().min(0),
-  eligibleToLevelUp: z.boolean(),
-  gatingRules: z.object({
-    allowedBrackets: z.array(BracketSchema),
-    hasColorIdentityConflict: z.boolean(),
-    loreLockedReason: z.string().nullable()
-  })
-});
 
 /** View model: Deck import parsing result */
 export const DeckImportOutputSchema = z.object({

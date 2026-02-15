@@ -9,7 +9,8 @@
     "start": "node dist/server.js",
     "test": "vitest run --passWithNoTests",
     "migrate:up": "node-pg-migrate up -m migrations -d \"$DATABASE_URL\"",
-    "migrate:down": "node-pg-migrate down -m migrations -d \"$DATABASE_URL\""
+    "migrate:down": "node-pg-migrate down -m migrations -d \"$DATABASE_URL\"",
+    "seed": "tsx src/seed.ts"
   },
   "dependencies": {
     "@cc/shared": "workspace:*",

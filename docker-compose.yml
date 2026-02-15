@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16
+    container_name: character_commander_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: character_commander
+    ports:
+      - "5433:5432"
+    volumes:
+      - cc_pgdata:/var/lib/postgresql/data
+
+volumes:
+  cc_pgdata:
