@@ -20,13 +20,76 @@ export function registerCharacterRoutes(router: Router) {
     const ruleset = await getActiveRuleset();
 
     const characterQ = await pool.query(
-      'select c.id, c.user_id as "userId", c.name, c.plane_id as "planeId", c.faction_id as "factionId", c.kinship_id as "kinshipId", c.class_id as "classId", c.archetype_id as "archetypeId", c.color_identity as "colorIdentity", c.level, c.xp_total as "xpTotal", c.bracket_cap as "bracketCap", c.portrait_url as "portraitUrl", c.card_version as "cardVersion" from characters c where c.id = $1 limit 1',
+      `select 
+        c.id, c.user_id as "userId", c.name, 
+        c.plane_id as "planeId", c.faction_id as "factionId", 
+        c.kinship_id as "kinshipId", c.class_id as "classId", 
+        c.archetype_id as "archetypeId", c.color_identity as "colorIdentity", 
+        c.level, c.xp_total as "xpTotal", c.bracket_cap as "bracketCap", 
+        c.portrait_url as "portraitUrl", c.card_version as "cardVersion",
+        p.code as "planeCode", p.name as "planeName",
+        f.code as "factionCode", f.name as "factionName",
+        k.creature_type as "kinshipCreatureType",
+        cl.code as "classCode", cl.name as "className",
+        a.code as "archetypeCode", a.name as "archetypeName"
+      from characters c
+      left join lore_planes p on c.plane_id = p.id
+      left join lore_factions f on c.faction_id = f.id
+      left join lore_kinships k on c.kinship_id = k.id
+      left join lore_classes cl on c.class_id = cl.id
+      left join lore_archetypes a on c.archetype_id = a.id
+      where c.id = $1 
+      limit 1`,
       [characterId]
     );
 
     if (!characterQ.rows[0]) return res.status(404).json({ error: 'CHARACTER_NOT_FOUND' });
 
-    const character = characterQ.rows[0];
+    const characterRow = characterQ.rows[0];
+    
+    const character = {
+      id: characterRow.id,
+      userId: characterRow.userId,
+      name: characterRow.name,
+      planeId: characterRow.planeId,
+      factionId: characterRow.factionId,
+      kinshipId: characterRow.kinshipId,
+      classId: characterRow.classId,
+      archetypeId: characterRow.archetypeId,
+      colorIdentity: characterRow.colorIdentity,
+      level: characterRow.level,
+      xpTotal: characterRow.xpTotal,
+      bracketCap: characterRow.bracketCap,
+      portraitUrl: characterRow.portraitUrl,
+      cardVersion: characterRow.cardVersion
+    };
+
+    const lore = {
+      plane: {
+        id: characterRow.planeId,
+        code: characterRow.planeCode,
+        name: characterRow.planeName
+      },
+      faction: {
+        id: characterRow.factionId,
+        code: characterRow.factionCode,
+        name: characterRow.factionName
+      },
+      kinship: {
+        id: characterRow.kinshipId,
+        creatureType: characterRow.kinshipCreatureType
+      },
+      class: {
+        id: characterRow.classId,
+        code: characterRow.classCode,
+        name: characterRow.className
+      },
+      archetype: {
+        id: characterRow.archetypeId,
+        code: characterRow.archetypeCode,
+        name: characterRow.archetypeName
+      }
+    };
 
     const computedCap = bracketCapFromLevel(character.level);
     if (character.bracketCap !== computedCap) {
@@ -51,6 +114,7 @@ export function registerCharacterRoutes(router: Router) {
 
     const payload = {
       character,
+      lore,
       unlocks: unlocksQ.rows,
       recentXpEvents: recentXpQ.rows,
       xp,

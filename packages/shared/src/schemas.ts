@@ -128,6 +128,60 @@ export const XpEventSchema = z.object({
   createdAt: z.string()
 });
 
+export const MatchStatusSchema = z.enum(['created', 'finalized']);
+
+export const MatchSchema = z.object({
+  id: z.string().uuid(),
+  rulesetId: z.string().uuid(),
+  mode: z.string().min(2),
+  bracket: BracketSchema,
+  status: MatchStatusSchema,
+  startedAt: z.string(),
+  endedAt: z.string().nullable().optional(),
+  durationSeconds: z.number().int().nullable().optional(),
+  tournamentRef: z.string().nullable().optional(),
+  xpAwarded: z.boolean().default(false)
+});
+
+export const MatchParticipantSchema = z.object({
+  id: z.string().uuid(),
+  matchId: z.string().uuid(),
+  characterId: z.string().uuid(),
+  placement: z.number().int().nullable().optional(),
+  xpValue: z.number().int(),
+  isWinner: z.boolean(),
+  recordedAt: z.string()
+});
+
+export const MatchCreateInputSchema = z.object({
+  rulesetId: z.string().uuid().optional(),
+  mode: z.string().min(2),
+  bracket: BracketSchema,
+  startedAt: z.string().optional(),
+  tournamentRef: z.string().nullable().optional()
+});
+
+export const MatchCreateResponseSchema = z.object({
+  id: z.string().uuid(),
+  status: MatchStatusSchema,
+  startedAt: z.string()
+});
+
+export const MatchLogResultsInputSchema = z.object({
+  endedAt: z.string().optional(),
+  durationSeconds: z.number().int().min(0).optional(),
+  participants: z
+    .array(
+      z.object({
+        characterId: z.string().uuid(),
+        placement: z.number().int().min(1).optional(),
+        xpValue: z.number().int(),
+        isWinner: z.boolean().optional()
+      })
+    )
+    .min(1)
+});
+
 export const CharacterUnlockSchema = z.object({
   id: z.string().uuid(),
   characterId: z.string().uuid(),
