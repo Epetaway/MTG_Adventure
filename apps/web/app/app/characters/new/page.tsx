@@ -51,6 +51,7 @@ type LoreClass = {
 type LoreArchetype = { id: string; code: string; name: string; description: string };
 
 const colorPips = ['W', 'U', 'B', 'R', 'G'];
+const emptyStringArray: string[] = [];
 
 export default function CharacterWizardPage() {
   const router = useRouter();
@@ -103,14 +104,20 @@ export default function CharacterWizardPage() {
   ];
 
   const selectedFaction = factions.find((f) => f.id === factionId);
-  const allowedKinships = selectedFaction?.allowedKinships ?? [];
+  const allowedKinships = useMemo(
+    () => selectedFaction?.allowedKinships ?? emptyStringArray,
+    [selectedFaction]
+  );
   const visibleKinships = useMemo(() => {
     if (!allowedKinships.length) return kinships;
     return kinships.filter((kinship) => allowedKinships.includes(kinship.creatureType));
   }, [allowedKinships, kinships]);
 
   const selectedClass = classes.find((item) => item.id === classId);
-  const allowedArchetypeCodes = selectedClass?.allowedArchetypeCodes ?? [];
+  const allowedArchetypeCodes = useMemo(
+    () => selectedClass?.allowedArchetypeCodes ?? emptyStringArray,
+    [selectedClass]
+  );
   const visibleArchetypes = useMemo(() => {
     if (!allowedArchetypeCodes.length) return archetypes;
     return archetypes.filter((archetype) => allowedArchetypeCodes.includes(archetype.code));
